@@ -1,0 +1,37 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 150px;
+  padding: 15px;
+  padding: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.auth__name {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.auth__input {
+  padding: 10px;
+  font-size: 20px;
+  width: 200px;
+  border: 2px solid #000;
+}
+
+.auth__btn {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+}
