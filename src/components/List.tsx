@@ -21,7 +21,7 @@ const List: React.FC = () => {
   }
 
   const [reportName, setReportName] = useState<string>("");
-  const [reportList, setReportList] = useState<Report[]>([]);
+  const [reportsList, setReportsList] = useState<Report[]>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState<string>("");
 
@@ -34,7 +34,7 @@ const List: React.FC = () => {
       const reports = snapshot.docs.map(
         (doc) => ({ ...doc.data(), id: doc.id } as Report)
       );
-      setReportList(reports);
+      setReportsList(reports);
     };
 
     fetchReports();
@@ -58,8 +58,8 @@ const List: React.FC = () => {
 
       console.log("Document written with ID: ", docRef.id);
 
-      setReportList([
-        ...reportList,
+      setReportsList([
+        ...reportsList,
         { name: reportName, id: docRef.id, date: Date() },
       ]);
       setReportName("");
@@ -71,7 +71,7 @@ const List: React.FC = () => {
   const handleDelete = async (id: string) => {
     try {
       await deleteDoc(doc(db, "ReportsList", id));
-      setReportList(reportList.filter((report) => report.id !== id));
+      setReportsList(reportsList.filter((report) => report.id !== id));
     } catch (e) {
       console.error("Error deleting document: ", e);
     }
@@ -105,8 +105,8 @@ const List: React.FC = () => {
         name: editingName,
       });
 
-      setReportList(
-        reportList.map((report) =>
+      setReportsList(
+        reportsList.map((report) =>
           report.id === id ? { ...report, name: editingName } : report
         )
       );
@@ -136,7 +136,7 @@ const List: React.FC = () => {
         </button>
       </form>
       <ul className="list__list">
-        {reportList.map((item) => (
+        {reportsList.map((item) => (
           <li key={item.id} className="list_item">
             {editingId === item.id ? (
               <>
